@@ -127,17 +127,9 @@ function checkPose(prediction, video) {
                     triggerExplosion(poseState);
                 }
                 break;
-            case '3':
-                if ((time >= 6.9 && time <= 8.4 && !poseState.firstWindowTriggered) ||
-                    (time >= 17.5 && time <= 19.5 && !poseState.secondWindowTriggered)) {
-                    if (time <= 13.0) {
-                        poseState.firstWindowTriggered = true;
-                    } else {
-                        poseState.secondWindowTriggered = true;
-                    }
-                    explosionActive = true;
-                    playExplosionSound();
-                    setTimeout(() => { explosionActive = false; }, 300);
+             case '3':
+                if (time >= 6.9 && time <= 8.4 && !poseState.triggered) {
+                    triggerExplosion(poseState);
                 }
                 break;
             case '4':
@@ -145,8 +137,9 @@ function checkPose(prediction, video) {
                     triggerExplosion(poseState);
                 }
                 break;
-            case '5':
-                if (time >= 21.9 && !poseState.triggered) {
+
+                case '5':
+                if (time >= 21.9 && time <= 22.7 && !poseState.triggered) {
                     triggerExplosion(poseState);
                 }
                 break;
